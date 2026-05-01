@@ -136,6 +136,31 @@ try {
         exit;
     }
 
+    if ($type === 'projects') {
+        $registry = lodgeboard_read_projects();
+        $projects = array_map(function (array $project): array {
+            $localPath = (string) ($project['localPath'] ?? '');
+            $exists = $localPath !== '' && is_dir($localPath);
+            return [
+                'id' => (string) ($project['id'] ?? ''),
+                'name' => (string) ($project['name'] ?? 'Untitled'),
+                'status' => (string) ($project['status'] ?? 'paused'),
+                'localPath' => $localPath,
+                'repo' => (string) ($project['repo'] ?? ''),
+                'branch' => (string) ($project['branch'] ?? ''),
+                'localUrl' => (string) ($project['localUrl'] ?? ''),
+                'deployUrl' => (string) ($project['deployUrl'] ?? ''),
+                'owner' => (string) ($project['owner'] ?? ''),
+                'nextTask' => (string) ($project['nextTask'] ?? ''),
+                'notes' => (string) ($project['notes'] ?? ''),
+                'pathExists' => $exists
+            ];
+        }, $registry['projects'] ?? []);
+
+        echo json_encode(['ok' => true, 'data' => $projects]);
+        exit;
+    }
+
     throw new RuntimeException('Unknown widget type.');
 } catch (Throwable $error) {
     http_response_code(400);

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 const LODGEBOARD_DATA = __DIR__ . '/data/bookmarks.json';
+const LODGEBOARD_PROJECTS = __DIR__ . '/data/projects.json';
 
 if (file_exists(__DIR__ . '/config.php')) {
     require_once __DIR__ . '/config.php';
@@ -17,6 +18,21 @@ function lodgeboard_read(): array
     $data = json_decode((string) $json, true);
     if (!is_array($data)) {
         return ['settings' => [], 'pages' => [], 'groups' => [], 'notes' => []];
+    }
+
+    return $data;
+}
+
+function lodgeboard_read_projects(): array
+{
+    if (!file_exists(LODGEBOARD_PROJECTS)) {
+        return ['projects' => []];
+    }
+
+    $json = file_get_contents(LODGEBOARD_PROJECTS);
+    $data = json_decode((string) $json, true);
+    if (!is_array($data)) {
+        return ['projects' => []];
     }
 
     return $data;

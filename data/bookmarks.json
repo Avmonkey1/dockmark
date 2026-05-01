@@ -171,6 +171,12 @@
             "repo": "gethomepage/homepage"
         },
         {
+            "id": "project-ops",
+            "page": "Projects",
+            "type": "projects",
+            "title": "Project Ops"
+        },
+        {
             "id": "reddit-wallpapers",
             "page": "Home",
             "type": "rss",

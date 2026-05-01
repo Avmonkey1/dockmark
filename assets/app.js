@@ -375,6 +375,31 @@ async function renderRss(widget, body) {
   `;
 }
 
+async function renderProjects(widget, body) {
+  const response = await fetch('widgets.php?type=projects');
+  const result = await response.json();
+  if (!result.ok) throw new Error(result.message || 'Projects unavailable.');
+  const projects = result.data || [];
+  body.innerHTML = `
+    <div class="project-ops-list">
+      ${projects.map((project) => `
+        <article class="project-ops-item status-${project.status}">
+          <div>
+            <strong>${project.name}</strong>
+            <span>${project.status}${project.branch ? ` · ${project.branch}` : ''}${project.pathExists ? '' : ' · path missing'}</span>
+          </div>
+          <p>${project.nextTask || project.notes || 'No next task set.'}</p>
+          <div class="project-ops-actions">
+            ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener">Repo</a>` : ''}
+            ${project.localUrl ? `<a href="${project.localUrl}" target="_blank" rel="noopener">Local</a>` : ''}
+            ${project.deployUrl ? `<a href="${project.deployUrl}" target="_blank" rel="noopener">Live</a>` : ''}
+          </div>
+        </article>
+      `).join('')}
+    </div>
+  `;
+}
+
 function bootWidgets() {
   document.querySelectorAll('[data-widget]').forEach((card) => {
     const body = card.querySelector('[data-widget-body]');
@@ -386,6 +411,7 @@ function bootWidgets() {
         if (widget.type === 'weather') await renderWeather(widget, body);
         if (widget.type === 'github') await renderGithub(widget, body);
         if (widget.type === 'rss') await renderRss(widget, body);
+        if (widget.type === 'projects') await renderProjects(widget, body);
       } catch (error) {
         body.innerHTML = `<span class="widget-loading">${error.message || 'Widget failed.'}</span>`;
       }

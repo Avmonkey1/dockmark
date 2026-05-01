@@ -677,6 +677,70 @@ svg {
   line-height: 1.35;
 }
 
+.project-ops-list {
+  display: grid;
+  gap: 10px;
+}
+
+.project-ops-item {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--muted);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.project-ops-item.status-active {
+  border-left-color: var(--gold);
+}
+
+.project-ops-item.status-stable {
+  border-left-color: var(--green);
+}
+
+.project-ops-item.status-needs-review {
+  border-left-color: var(--rust);
+}
+
+.project-ops-item div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.project-ops-item strong {
+  color: var(--text);
+}
+
+.project-ops-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.project-ops-item p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.project-ops-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.project-ops-actions a {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--soft);
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .widget-loading {
   color: var(--muted);
 }

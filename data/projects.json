@@ -1,0 +1,56 @@
+{
+  "projects": [
+    {
+      "id": "dockmark",
+      "name": "Dockmark",
+      "status": "active",
+      "localPath": "C:\\Users\\Dell\\Projects\\dockmark",
+      "repo": "https://github.com/Avmonkey1/dockmark",
+      "branch": "main",
+      "localUrl": "http://127.0.0.1:8090",
+      "deployUrl": "",
+      "owner": "William + Codex",
+      "nextTask": "Build Project Ops Panel and then Claw link audit.",
+      "notes": "Lead project. Use this repo as the source of truth. Do not work from the old OneDrive copy."
+    },
+    {
+      "id": "crewcall-wp-demo",
+      "name": "CrewCall WP Demo",
+      "status": "paused",
+      "localPath": "C:\\Users\\Dell\\OneDrive\\Documents\\New project\\crewcall-wp-demo",
+      "repo": "",
+      "branch": "",
+      "localUrl": "",
+      "deployUrl": "",
+      "owner": "William",
+      "nextTask": "Decide whether to move into C:\\Users\\Dell\\Projects and initialize Git.",
+      "notes": "Potential portfolio/product demo. Still in OneDrive."
+    },
+    {
+      "id": "denver-event-staffing-redesign",
+      "name": "Denver Event Staffing Redesign",
+      "status": "paused",
+      "localPath": "C:\\Users\\Dell\\OneDrive\\Documents\\New project\\denver-event-staffing-redesign",
+      "repo": "",
+      "branch": "",
+      "localUrl": "",
+      "deployUrl": "",
+      "owner": "William",
+      "nextTask": "Decide whether this is active, archived, or moved to Projects.",
+      "notes": "Likely real build, but not currently organized as its own GitHub project."
+    },
+    {
+      "id": "g2g-system",
+      "name": "Give To Get System",
+      "status": "needs-review",
+      "localPath": "C:\\Users\\Dell\\OneDrive\\Documents\\New project\\g2g-system",
+      "repo": "",
+      "branch": "",
+      "localUrl": "",
+      "deployUrl": "",
+      "owner": "William",
+      "nextTask": "Audit before moving because related loose files exist in the old OneDrive root.",
+      "notes": "Do not let another AI modify until the active source files are identified."
+    }
+  ]
+}

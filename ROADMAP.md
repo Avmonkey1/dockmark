@@ -48,6 +48,7 @@ Started widgets that are useful without needing scary OAuth setup:
 - Done: GitHub repo watcher for stars, forks, issues, releases, and update recency
 - Done: RSS/reddit feed reader
 - Done: Google account-slot helper for multi-account Google links
+- Started: Project Ops Panel for local project coordination
 
 Next widget candidates:
 
@@ -55,6 +56,7 @@ Next widget candidates:
 - Uptime checks for personal sites
 - Notes and reminders
 - Wallpaper downloader/review inbox for subreddit feeds
+- Git/local project status widget
 
 Later, add authenticated widgets:
 
