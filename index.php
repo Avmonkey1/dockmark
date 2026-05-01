@@ -193,6 +193,8 @@ $brandLetter = strtoupper(substr($appName, 0, 1));
                     <strong><?= htmlspecialchars((string) ($widget['title'] ?? 'Widget')) ?></strong>
                     <?php if (($widget['type'] ?? '') === 'clock'): ?>
                       <button type="button" data-clock-style title="Change clock style">Style</button>
+                    <?php elseif (($widget['type'] ?? '') === 'projects'): ?>
+                      <button type="button" data-projects-refresh title="Refresh project status">Refresh</button>
                     <?php endif; ?>
                   </header>
                   <div class="widget-body" data-widget-body>

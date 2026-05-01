@@ -323,6 +323,15 @@ function formatRelativeDate(value) {
   return `${days} days ago`;
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
 function renderClock(widget, body) {
   const saved = localStorage.getItem(`dockmark-clock-${widget.id}`);
   const style = saved || widget.style || 'retro';
@@ -385,18 +394,26 @@ async function renderProjects(widget, body) {
       ${projects.map((project) => `
         <article class="project-ops-item status-${project.status}">
           <div>
-            <strong>${project.name}</strong>
-            <span>${project.status}${project.branch ? ` · ${project.branch}` : ''}${project.pathExists ? '' : ' · path missing'}</span>
+            <strong>${escapeHtml(project.name)}</strong>
+            <span>${escapeHtml(project.status)}${project.git?.branch || project.branch ? ` &middot; ${escapeHtml(project.git?.branch || project.branch)}` : ''}${project.pathExists ? '' : ' &middot; path missing'}</span>
           </div>
-          <p>${project.nextTask || project.notes || 'No next task set.'}</p>
+          <p>${escapeHtml(project.nextTask || project.notes || 'No next task set.')}</p>
+          ${project.git?.available ? `
+            <div class="git-health ${project.git.dirtyCount > 0 ? 'dirty' : 'clean'}">
+              <span>${escapeHtml(project.git.summary)}</span>
+              ${project.git.ahead ? `<span>${project.git.ahead} ahead</span>` : ''}
+              ${project.git.behind ? `<span>${project.git.behind} behind</span>` : ''}
+            </div>
+          ` : ''}
           <div class="project-ops-actions">
-            ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener">Repo</a>` : ''}
-            ${project.localUrl ? `<a href="${project.localUrl}" target="_blank" rel="noopener">Local</a>` : ''}
-            ${project.deployUrl ? `<a href="${project.deployUrl}" target="_blank" rel="noopener">Live</a>` : ''}
+            ${project.repo ? `<a href="${escapeHtml(project.repo)}" target="_blank" rel="noopener">Repo</a>` : ''}
+            ${project.localUrl ? `<a href="${escapeHtml(project.localUrl)}" target="_blank" rel="noopener">Local</a>` : ''}
+            ${project.deployUrl ? `<a href="${escapeHtml(project.deployUrl)}" target="_blank" rel="noopener">Live</a>` : ''}
           </div>
         </article>
       `).join('')}
     </div>
+    <p class="project-ops-refreshed">Refreshed ${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}</p>
   `;
 }
 
@@ -422,6 +439,11 @@ function bootWidgets() {
       const next = clockStyles[(clockStyles.indexOf(current) + 1) % clockStyles.length];
       localStorage.setItem(`dockmark-clock-${widget.id}`, next);
       renderClock(widget, body);
+    });
+
+    card.querySelector('[data-projects-refresh]')?.addEventListener('click', () => {
+      body.innerHTML = '<span class="widget-loading">Refreshing projects...</span>';
+      render();
     });
 
     render();

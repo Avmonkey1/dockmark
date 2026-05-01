@@ -725,6 +725,40 @@ svg {
   line-height: 1.45;
 }
 
+.git-health {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.git-health span {
+  display: inline-flex;
+  width: max-content;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--soft);
+  background: rgba(255, 255, 255, .035);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.git-health.clean span:first-child {
+  color: var(--green);
+}
+
+.git-health.dirty span:first-child {
+  color: var(--rust);
+}
+
+.project-ops-refreshed {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
 .project-ops-actions {
   display: flex;
   flex-wrap: wrap;

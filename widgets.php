@@ -42,6 +42,74 @@ function dockmark_fetch_text(string $url): string
     return $raw;
 }
 
+function dockmark_git_command(string $path, array $args): string
+{
+    if ($path === '' || !is_dir($path) || !is_dir($path . DIRECTORY_SEPARATOR . '.git')) {
+        return '';
+    }
+
+    $command = array_merge(['git', '-C', $path], $args);
+    $descriptorSpec = [
+        0 => ['pipe', 'r'],
+        1 => ['pipe', 'w'],
+        2 => ['pipe', 'w']
+    ];
+    $process = @proc_open($command, $descriptorSpec, $pipes);
+    if (!is_resource($process)) {
+        return '';
+    }
+
+    fclose($pipes[0]);
+    $stdout = stream_get_contents($pipes[1]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+    proc_close($process);
+
+    return trim((string) $stdout);
+}
+
+function dockmark_git_status(string $path): array
+{
+    $branch = dockmark_git_command($path, ['rev-parse', '--abbrev-ref', 'HEAD']);
+    $remote = dockmark_git_command($path, ['remote', 'get-url', 'origin']);
+    $shortStatus = dockmark_git_command($path, ['status', '--short', '--branch']);
+
+    if ($branch === '' && $shortStatus === '') {
+        return [
+            'available' => false,
+            'branch' => '',
+            'remote' => '',
+            'dirtyCount' => 0,
+            'ahead' => 0,
+            'behind' => 0,
+            'summary' => 'Git unavailable'
+        ];
+    }
+
+    $lines = array_values(array_filter(preg_split('/\r\n|\r|\n/', $shortStatus) ?: []));
+    $branchLine = $lines[0] ?? '';
+    $dirtyLines = array_filter(array_slice($lines, 1), fn ($line) => trim($line) !== '');
+    $ahead = 0;
+    $behind = 0;
+
+    if (preg_match('/ahead\s+(\d+)/', $branchLine, $match)) {
+        $ahead = (int) $match[1];
+    }
+    if (preg_match('/behind\s+(\d+)/', $branchLine, $match)) {
+        $behind = (int) $match[1];
+    }
+
+    return [
+        'available' => true,
+        'branch' => $branch,
+        'remote' => $remote,
+        'dirtyCount' => count($dirtyLines),
+        'ahead' => $ahead,
+        'behind' => $behind,
+        'summary' => count($dirtyLines) === 0 ? 'Clean' : count($dirtyLines) . ' changed'
+    ];
+}
+
 try {
     $type = (string) ($_GET['type'] ?? '');
 
@@ -141,6 +209,7 @@ try {
         $projects = array_map(function (array $project): array {
             $localPath = (string) ($project['localPath'] ?? '');
             $exists = $localPath !== '' && is_dir($localPath);
+            $git = $exists ? dockmark_git_status($localPath) : ['available' => false];
             return [
                 'id' => (string) ($project['id'] ?? ''),
                 'name' => (string) ($project['name'] ?? 'Untitled'),
@@ -153,7 +222,8 @@ try {
                 'owner' => (string) ($project['owner'] ?? ''),
                 'nextTask' => (string) ($project['nextTask'] ?? ''),
                 'notes' => (string) ($project['notes'] ?? ''),
-                'pathExists' => $exists
+                'pathExists' => $exists,
+                'git' => $git
             ];
         }, $registry['projects'] ?? []);
 

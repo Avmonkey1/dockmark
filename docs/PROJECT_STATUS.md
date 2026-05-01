@@ -22,11 +22,11 @@ Dockmark is a standalone PHP/JSON self-hosted start page. It can also import/exp
   - GitHub repo watcher
   - RSS/reddit feed widget
 - Google account-slot helper for Google app links using `/u/{slot}/` and `authuser={slot}` hints
-- Project Ops Panel spec and seed project registry
+- Project Ops Panel spec, seed project registry, read-only widget, and live Git status refresh
 
 ## Not Yet Done
 
-- Render Project Ops Panel from `data/projects.json`
+- Project Ops edit/add UI
 - Link/group/page edit and delete controls
 - Widget management UI inside the admin drawer
 - Persistent widget configuration editor

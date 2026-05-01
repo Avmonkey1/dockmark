@@ -27,11 +27,10 @@ Use a JSON file:
 data/projects.json
 ```
 
-Render it as a Project Ops widget on the `Projects` page.
+Render it as a Project Ops widget on the `Projects` page. The current widget reads the registry and refreshes path/Git status from the server.
 
 The first version can be read-only and manually edited. Later versions should add:
 
-- refresh Git status button
 - add/edit project UI
 - Claude/Codex handoff notes
 - GitHub issue/PR widgets

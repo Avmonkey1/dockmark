@@ -6,12 +6,12 @@
       "status": "active",
       "localPath": "C:\\Users\\Dell\\Projects\\dockmark",
       "repo": "https://github.com/Avmonkey1/dockmark",
-      "branch": "main",
+      "branch": "codex/project-ops-panel",
       "localUrl": "http://127.0.0.1:8090",
       "deployUrl": "",
       "owner": "William + Codex",
-      "nextTask": "Build Project Ops Panel and then Claw link audit.",
-      "notes": "Lead project. Use this repo as the source of truth. Do not work from the old OneDrive copy."
+      "nextTask": "Review and merge Project Ops Panel, then build Claw link audit.",
+      "notes": "Lead project. Use this repo as the source of truth. Project Ops now reads live Git status for local Git repos."
     },
     {
       "id": "crewcall-wp-demo",
