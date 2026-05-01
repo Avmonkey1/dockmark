@@ -1,0 +1,181 @@
+{
+    "settings": {
+        "appName": "Dockmark",
+        "tagline": "A self-hosted start page for links, widgets, and dashboard configs.",
+        "homePage": "Home",
+        "accent": "#c6a35b"
+    },
+    "pages": [
+        {
+            "name": "Home",
+            "description": "Daily launch points and current work."
+        },
+        {
+            "name": "Projects",
+            "description": "Client builds, demos, and active product work."
+        },
+        {
+            "name": "AI Tools",
+            "description": "Fast access to model tools, prompts, and builders."
+        },
+        {
+            "name": "Clients",
+            "description": "Client portals, hosting panels, and delivery links."
+        },
+        {
+            "name": "Hosting",
+            "description": "Servers, domains, DNS, mail, and deployment tools."
+        }
+    ],
+    "groups": [
+        {
+            "id": "daily",
+            "page": "Home",
+            "title": "Daily Desk",
+            "description": "The first places to open when the day starts.",
+            "color": "#c6a35b",
+            "links": [
+                {
+                    "id": "chatgpt",
+                    "title": "ChatGPT",
+                    "url": "https://chatgpt.com",
+                    "note": "Writing, coding, and rough thinking",
+                    "icon": "spark",
+                    "tags": [
+                        "ai",
+                        "daily"
+                    ]
+                },
+                {
+                    "id": "gmail",
+                    "title": "Gmail",
+                    "url": "https://mail.google.com",
+                    "note": "Inbox and follow-ups",
+                    "icon": "mail",
+                    "googleAccount": "0",
+                    "tags": [
+                        "email",
+                        "daily"
+                    ]
+                },
+                {
+                    "id": "calendar",
+                    "title": "Calendar",
+                    "url": "https://calendar.google.com",
+                    "note": "Schedule and reminders",
+                    "icon": "calendar",
+                    "googleAccount": "0",
+                    "tags": [
+                        "schedule"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "william",
+            "page": "Projects",
+            "title": "William Lodge",
+            "description": "Brand site, portfolio work, and live project admin.",
+            "color": "#9bb7b0",
+            "links": [
+                {
+                    "id": "wl-site",
+                    "title": "williamlodge.com",
+                    "url": "https://williamlodge.com",
+                    "note": "Public site",
+                    "icon": "globe",
+                    "tags": [
+                        "portfolio"
+                    ]
+                },
+                {
+                    "id": "github",
+                    "title": "GitHub",
+                    "url": "https://github.com",
+                    "note": "Repos and releases",
+                    "icon": "code",
+                    "tags": [
+                        "code",
+                        "repo"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hosting-core",
+            "page": "Hosting",
+            "title": "Hosting Core",
+            "description": "Panels and infrastructure you touch often.",
+            "color": "#b98368",
+            "links": [
+                {
+                    "id": "directadmin",
+                    "title": "DirectAdmin",
+                    "url": "https://www.directadmin.com/",
+                    "note": "Server control panel",
+                    "icon": "server",
+                    "tags": [
+                        "hosting"
+                    ]
+                },
+                {
+                    "id": "cloudflare",
+                    "title": "Cloudflare",
+                    "url": "https://dash.cloudflare.com",
+                    "note": "DNS and edge controls",
+                    "icon": "shield",
+                    "tags": [
+                        "dns",
+                        "hosting"
+                    ]
+                }
+            ]
+        }
+    ],
+    "notes": [
+        {
+            "id": "north-star",
+            "title": "Product note",
+            "body": "Make the dashboard useful first, then grow the widget marketplace and Glance/Homepage export depth.",
+            "tone": "gold"
+        },
+        {
+            "id": "subdomain",
+            "title": "Deploy idea",
+            "body": "Point a subdomain or app domain at this folder once the admin password is configured.",
+            "tone": "green"
+        }
+    ],
+    "widgets": [
+        {
+            "id": "clock-main",
+            "page": "Home",
+            "type": "clock",
+            "title": "Local Time",
+            "style": "retro"
+        },
+        {
+            "id": "weather-denver",
+            "page": "Home",
+            "type": "weather",
+            "title": "Weather",
+            "lat": 39.7392,
+            "lon": -104.9903,
+            "label": "Denver"
+        },
+        {
+            "id": "github-homepage",
+            "page": "Projects",
+            "type": "github",
+            "title": "Repo Watch",
+            "repo": "gethomepage/homepage"
+        },
+        {
+            "id": "reddit-wallpapers",
+            "page": "Home",
+            "type": "rss",
+            "title": "Wallpaper Feed",
+            "url": "https://www.reddit.com/r/wallpapers/.rss"
+        }
+    ]
+}

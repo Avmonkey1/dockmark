@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dockmark Clipper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <strong>Dockmark</strong>
+      <span>Clip current tab</span>
+    </header>
+
+    <label>
+      Dockmark URL
+      <input id="dockmarkUrl" placeholder="https://dock.example.com">
+    </label>
+
+    <label>
+      Page
+      <input id="page" value="Home">
+    </label>
+
+    <label>
+      Group
+      <input id="group" value="Inbox">
+    </label>
+
+    <label>
+      Tags
+      <input id="tags" placeholder="reading, research">
+    </label>
+
+    <button id="save">Save current tab</button>
+    <p id="status"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

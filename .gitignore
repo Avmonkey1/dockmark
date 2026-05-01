@@ -1,0 +1,16 @@
+data/*.tmp
+data/*.test-backup.json
+config.php
+lodgeboard-desktop.png
+lodgeboard-mobile.png
+dockmark-desktop.png
+dockmark-mobile.png
+dockmark-light.png
+*.zip
+*.png
+!assets/*.png
+!website/*.png
+!extensions/**/*.png
+.env
+.DS_Store
+Thumbs.db

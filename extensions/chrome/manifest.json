@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Dockmark Clipper",
+  "version": "0.1.0",
+  "description": "Save the current tab to your self-hosted Dockmark dashboard.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["http://*/", "https://*/"],
+  "action": {
+    "default_title": "Save to Dockmark",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icon.svg"
+  }
+}
